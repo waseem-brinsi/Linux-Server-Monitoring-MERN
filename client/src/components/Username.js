@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import avatar from '../assets/profile-picture-3.jpg'
 import { Toaster } from "react-hot-toast";
 import { useFormik } from "formik";
+import { usernameValidate } from "./helper/validate";
 
 function Username () {
 
@@ -11,6 +12,7 @@ function Username () {
             initialValues : {
                 username:''
             },
+            validate : usernameValidate, 
             validateOnBlur:false,
             validateOnChange:false,
             onSubmit : async (values)=>{
@@ -18,11 +20,9 @@ function Username () {
             }
         }
     )
-
-
-
     return (
         <div className='container m-auto '>
+            <Toaster position='top-center' reverseOrder='false'></Toaster>
             <div className='flex justify-center h-screen'>
                 <div className=" w-full max-w-sm p-4 m-auto  bg-white border border-gray-200 rounded-lg shadow sm:p-6 md:p-8 dark:bg-gray-800 dark:border-gray-700">
                         <form className="space-y-5 " onSubmit={formik.handleSubmit}  action="#">
@@ -37,8 +37,7 @@ function Username () {
                                 Let's Go
                             </button>
                             
-                            <div className="text-sm font-medium text-gray-500 text-center dark:text-gray-300">
-                                Not registered? 
+                            <div className="text-sm font-medium text-gray-500 text-center dark:text-gray-300">Not registered? 
                                 <Link to="/register" className="text-blue-700 hover:underline dark:text-blue-500">Create account</Link>
                             </div>
                         </form>
